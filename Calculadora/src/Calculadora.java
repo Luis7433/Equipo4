@@ -32,7 +32,7 @@ public class Calculadora implements ICalculadora {
         if (b == 0) {
             throw new ArithmeticException("No se puede dividir por cero");
         }//exception
-        return a / b;
+        return (double) (a / b);
     }
 
     public double dividir(double a, double b) throws ArithmeticException {
