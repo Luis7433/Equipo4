@@ -28,7 +28,7 @@ public class Calculadora implements ICalculadora {
     }
 
     @Override
-    public int dividir(int a, int b) throws ArithmeticException {
+    public double dividir(int a, int b) throws ArithmeticException {
         if (b == 0) {
             throw new ArithmeticException("No se puede dividir por cero");
         }//exception
