@@ -1,6 +1,7 @@
 public interface ICalculadora {
-    int sumar(int a, int b) throws Exception;
-    int restar(int a, int b) throws Exception;
-    int multiplicar(int a, int b) throws Exception;
+    int sumar(int a, int b);
+    int restar(int a, int b);
+    int multiplicar(int a, int b);
     int dividir(int a, int b) throws Exception;
 }
+
