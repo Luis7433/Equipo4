@@ -1,5 +1,83 @@
+import java.util.Scanner;
 
 public class CalculadoraCientifica extends Calculadora{
+	
+	 private int num1, num2, resultado;
+	    private Scanner scanner = new Scanner(System.in);
+
+	    public void ejecutar(){
+	        num1 = getInputB(scanner, "Ingrese el primer número (debe ser binario): ");
+	        num2 = getInputB(scanner, "Ingrese el segundo número (debe ser binario): ");
+
+	        try {
+	            switch (getInput(scanner)) {
+	                case '+':
+	                    resultado = sumar(num1, num2);
+	                    break;
+	                case '-':
+	                    resultado = restar(num1, num2);
+	                    break;
+	                default:
+	                    System.out.println("Operación no válida");
+	                    return;
+	            }
+	            System.out.println("El resultado es: " + resultado);
+
+	        } catch (ArithmeticException e) {
+	            System.out.println(e.getMessage()); // Manejo de la excepción de la división
+	        }
+	    }
+
+	    
+	    public int getInputB(Scanner scanner, String mensaje) {
+	    	String entrada ="";
+	        int numero = 0;
+	        boolean validInput = false;
+
+	        while (!validInput) {
+	            try {
+	                System.out.println(mensaje);
+	                entrada =scanner.nextLine().trim();
+	                if(!esBinario(entrada)) throw new NumberFormatException();
+	                numero = Integer.parseInt(entrada);
+	                validInput = true;
+	            } catch (NumberFormatException e) {
+	                System.out.println("Número inválido. Por favor, ingrese un número válido.");
+	            }
+	        }
+	        return numero;
+	    }
+
+	    public char getInput(Scanner scanner) {
+	        char operacion = ' ';
+	        boolean validInput = false;
+
+	        while (!validInput) {
+	            System.out.println("Seleccione la operación (+, -): ");
+	            operacion = scanner.nextLine().trim().charAt(0);
+	            if (operacion == '+' || operacion == '-' ) {
+	                validInput = true;
+	            } else {
+	                System.out.println("Operación no válida. Por favor, ingrese una operación válida (+, -).");
+	            }
+	        }
+	        return operacion;
+	    }
+	    
+	    public static boolean esBinario(String cadena) {
+	        // Comprobar si la cadena está vacía
+	        if (cadena == null || cadena.isEmpty()) {
+	            return false;
+	        }
+
+	        // Validar que cada carácter en la cadena sea '0' o '1'
+	        for (char c : cadena.toCharArray()) {
+	            if (c != '0' && c != '1') {
+	                return false;
+	            }
+	        }
+	        return true;
+	    }
 	
 	@Override
 	public int sumar(int binario1, int binario2) {
