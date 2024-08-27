@@ -2,60 +2,28 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-
-        Calculadora calc = new Calculadora();
-
-        Scanner scanner = new Scanner(System.in);
-
-        double num1 = 0.0, num2 = 0.0;
-
-        int num3 = 0, num4 = 0;
-
-        char operacion = ' ';
-
+    //Métodos sobrecargados
+    public static double getInput(Scanner sc, String message){
+        double num = 0.0;
         boolean validInput = false; // flag para la validacion de los numeros
-
-        while (!validInput) { // While que lee el 1er numero
-
+        while (!validInput) { // While que lee el número
             try {
-                System.out.println("Ingrese el primer número (puede ser entero o decimal): ");
-
-                num1 = Double.parseDouble(scanner.nextLine().trim());
-
+                System.out.println("Ingrese el " + message + " número (puede ser entero o decimal): ");
+                num = Double.parseDouble(sc.nextLine().trim());
                 validInput = true;
-
             } catch (NumberFormatException e) {
-
                 System.out.println("Número inválido. Por favor, ingrese un número válido.");
             }
         }
-
-        validInput = false; // Resetear el flag para el 2do numero
-
-        while (!validInput) { // While que lee el 2do numero
-
-            try {
-                System.out.println("Ingrese el segundo número (puede ser entero o decimal): ");
-
-                num2 = Double.parseDouble(scanner.nextLine().trim());
-
-                validInput = true;
-
-            } catch (NumberFormatException e) {
-
-                System.out.println("Número inválido. Por favor, ingrese un número válido.");
-            }
-        }
-
-        validInput = false; // Resetear el flag para la operación
-
-        // While para leer el tipo de operacion
+        return num;
+    }
+    public static char getInput(Scanner sc){
+        char operacion = ' ';
+        boolean validInput = false; // flag para la validacion de los numeros
         while (!validInput) {
-
             System.out.println("Seleccione la operación (+, -, *, /): ");
 
-            operacion = scanner.nextLine().trim().charAt(0);
+            operacion = sc.nextLine().trim().charAt(0);
 
             if (operacion == '+' || operacion == '-' || operacion == '*' || operacion == '/') {
 
@@ -66,11 +34,21 @@ public class Main {
 
             }
         }
+        return operacion;
+    }
 
-        double resultado = 0.0;
+
+    public static void main(String[] args) {
+
+        Calculadora calc = new Calculadora();
+        Scanner scanner = new Scanner(System.in);
+        double num1 = 0.0, num2 = 0.0, resultado = 0.0;
+
+        num1 = getInput(scanner,"primer");
+        num2 = getInput(scanner, "segundo");
 
         try {
-            switch (operacion) {
+            switch (getInput(scanner)) {
                 case '+':
                     resultado = calc.sumar(num1, num2);
                     break;
@@ -90,8 +68,7 @@ public class Main {
             System.out.println("El resultado es: " + resultado);
 
         } catch (ArithmeticException e) {
-
             System.out.println(e.getMessage()); // Manejo de la excepción de la division
         }
     }//metodo main
-}//class Main
+}//class M
