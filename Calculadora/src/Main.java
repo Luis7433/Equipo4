@@ -10,6 +10,8 @@ public class Main {
 
         double num1 = 0.0, num2 = 0.0;
 
+        int num3 = 0, num4 = 0;
+
         char operacion = ' ';
 
         boolean validInput = false; // flag para la validacion de los numeros
