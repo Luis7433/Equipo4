@@ -32,7 +32,8 @@ public class Main {
 					}
 				}
 
-	            
+				validInput = false;
+				
 	            // Ejecutar la acción correspondiente
 	            switch (opcion) {
 	                case 1:

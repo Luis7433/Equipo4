@@ -23,8 +23,8 @@ public class CalculadoraCientifica extends Calculadora{
 	            }
 	            System.out.println("El resultado es: " + resultado);
 
-	        } catch (ArithmeticException e) {
-	            System.out.println(e.getMessage()); // Manejo de la excepción de la división
+	        } catch (NumberFormatException e) {
+	            System.out.println(e.getMessage()); // Manejo de la excepción de la resta
 	        }
 	    }
 
@@ -101,6 +101,7 @@ public class CalculadoraCientifica extends Calculadora{
 	    
 	    // restar los valores decimales
 	    int sumaDecimal = numero1 - numero2;
+	    if(sumaDecimal<0)  throw new NumberFormatException("Operación invalida");
 	    
 	    // Convertir el resultado de la suma decimal a binario y luego de binario a entero
 	    return Integer.parseInt(Integer.toBinaryString(sumaDecimal));
