@@ -1,12 +1,14 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		 Scanner scanner = new Scanner(System.in);
+		boolean validInput = false;
+		Scanner scanner = new Scanner(System.in);
 		Calculadora calculadoraNormal = new Calculadora();
 		CalculadoraCientifica calculadoraCientifica = new CalculadoraCientifica();
 
-	        int opcion;
+	        int opcion = 0;
 
 	        do {
 	            // Mostrar el menú
@@ -14,10 +16,22 @@ public class Main {
 	            System.out.println("1. Calculadora Normal");
 	            System.out.println("2. Calculadora Científica");
 	            System.out.println("0. Salir");
-	            System.out.print("Ingrese su opción: ");
-	            
-	            // Leer la opción del usuario
-	            opcion = scanner.nextInt();
+
+				while(!validInput){
+					try {
+						System.out.print("Ingrese su opción: ");
+						// Leer la opción del usuario
+						opcion = scanner.nextInt();
+						if(opcion > 2 || opcion < 0)
+							throw new InputMismatchException();
+						validInput = true;
+					}
+					catch(InputMismatchException ie){
+						System.out.println("Esa no es una opción válida");
+						scanner.nextLine();
+					}
+				}
+
 	            
 	            // Ejecutar la acción correspondiente
 	            switch (opcion) {
@@ -25,7 +39,7 @@ public class Main {
 	                	calculadoraNormal.ejecutar();
 	                    break;
 	                case 2:
-	                    calculadoraCientifica.ejecutar();;
+	                    calculadoraCientifica.ejecutar();
 	                    break;
 	                case 0:
 	                    System.out.println("Saliendo del programa...");
