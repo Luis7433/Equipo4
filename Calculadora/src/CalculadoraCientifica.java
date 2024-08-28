@@ -101,7 +101,7 @@ public class CalculadoraCientifica extends Calculadora{
 	    
 	    // restar los valores decimales
 	    int sumaDecimal = numero1 - numero2;
-	    if(sumaDecimal<0)  throw new NumberFormatException("Operación invalida");
+	    if(sumaDecimal<0)  throw new NumberFormatException("Operación invalida: su número 1 debe ser mayor al número 2");
 	    
 	    // Convertir el resultado de la suma decimal a binario y luego de binario a entero
 	    return Integer.parseInt(Integer.toBinaryString(sumaDecimal));
